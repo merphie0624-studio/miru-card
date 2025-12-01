@@ -20,7 +20,7 @@
     .background-tree {
       position: fixed;
       inset: 0;
-      background-image: url("life-tree.png"); /* ← 你要改成自己的檔名 */
+      background-image: url("lifetree.png"); /* ← 檔名用 lifetree.png */
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -52,12 +52,13 @@
       text-align: left;
     }
 
-    img {
+    #cardImage {
       width: 100%;
       border-radius: 18px;
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.15);
       cursor: pointer;
       display: block;
+      user-select: none;
     }
 
     .footer {
@@ -95,33 +96,37 @@
   </style>
 </head>
 <body>
+  <!-- 生命樹背景 -->
   <div class="background-tree"></div>
 
   <h1>Miru's Healing Card</h1>
 
   <div class="container">
     <h2>Miru Card</h2>
-    <img id="cardImage" alt="Miru Card" onclick="showRandomImage()" />
+    <!-- 抽出的那張卡片，點圖會換下一張 -->
+    <img id="cardImage" alt="Miru Card" />
   </div>
 
   <p class="footer">Thank you for visiting 🌿</p>
 
+  <!-- 你指定的那句話 -->
   <p class="healing-message">
     如果你願意，毛孩一定可以給你光與愛，讓這份療癒帶給你無條件的愛。
   </p>
 
+  <!-- 抽牌說明 / 教學 -->
   <div class="instructions">
     <h3>抽牌小提醒｜How to use</h3>
     <ol>
-      <li>深呼吸，回到當下。</li>
-      <li>在心裡問：「今天，我需要看見什麼訊息？」</li>
-      <li>點擊卡片或刷新頁面 → 會抽出一張今日訊息。</li>
-      <li>讓畫面、文字與感受自行落在你心裡。</li>
+      <li>先深呼吸幾次，讓自己回到此刻。</li>
+      <li>在心裡輕輕問：「今天，我需要看見什麼訊息？」</li>
+      <li>點擊卡片，或重新整理頁面，讓 Miru 幫你抽出一張今日卡。</li>
+      <li>看著畫面與文字，感受哪一句話落在你心裡，那就是現在的回應。</li>
     </ol>
   </div>
 
   <script>
-    /* 你提供的圖片名稱（已完整放入） */
+    // 你提供的七張圖檔名
     const images = [
       "12EAFDA1-8BAF-414E-9818-E5CF2A0D199F.PNG",
       "16EFF9D4-0DE0-485E-B4BC-31BACFF72871.PNG",
@@ -132,16 +137,21 @@
       "FB4C9079-B27B-4A1C-9CAD-C7A707D812BB.PNG"
     ];
 
-    function getRandomImage() {
-      const index = Math.floor(Math.random() * images.length);
-      return images[index];
+    function pickRandom() {
+      return images[Math.floor(Math.random() * images.length)];
     }
 
-    function showRandomImage() {
-      document.getElementById("cardImage").src = getRandomImage();
+    function updateCard() {
+      const img = document.getElementById("cardImage");
+      img.src = pickRandom();
     }
 
-    window.addEventListener("DOMContentLoaded", showRandomImage);
+    // 第一次載入：自動抽一張
+    window.addEventListener("DOMContentLoaded", () => {
+      const img = document.getElementById("cardImage");
+      img.addEventListener("click", updateCard); // 點圖片換下一張
+      updateCard(); // 先抽一張
+    });
   </script>
 </body>
 </html>
