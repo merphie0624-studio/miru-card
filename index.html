@@ -1,236 +1,171 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Miru's Healing Card</title>
-  <style>
-    :root {
-      --bg-color: #f7f3f5;
-      --card-bg: #ffffff;
-      --text-main: #333333;
-      --text-sub: #666666;
-      --accent: #3baf6b;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miru Card</title>
+    <style>
+        /* 整體頁面設定 */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            text-align: center;
+            color: #222;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        /* 生命樹背景：50% 透明度 */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("lifetree.png") center/cover no-repeat;
+            opacity: 0.5;
+            z-index: -1;
+        }
 
-    body {
-      margin: 0;
-      padding: 32px 16px 40px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
-        Arial, sans-serif;
-      background: var(--bg-color);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      position: relative;
-      overflow-x: hidden;
-    }
+        h1 {
+            font-size: 26px;
+            margin: 28px 16px 18px;
+            letter-spacing: 1px;
+        }
 
-    /* 背景生命樹 */
-    .background {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
-      z-index: 0;
-    }
+        .container {
+            max-width: 420px;
+            margin: 0 auto 40px;
+            padding: 0 16px 40px;
+        }
 
-    .background img {
-      max-width: 620px;
-      width: 92vw;
-      opacity: 0.5;         /* 50% 透明度 */
-      filter: blur(0.2px);  /* 一點點柔焦，讓字比較清楚 */
-    }
+        .card-wrapper {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            padding: 18px 18px 22px;
+            margin-bottom: 28px;
+        }
 
-    .main {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 480px;
-    }
+        .card-title {
+            font-weight: 600;
+            font-size: 18px;
+            text-align: left;
+            margin: 0 0 10px 6px;
+        }
 
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      letter-spacing: 0.03em;
-      margin: 0 0 24px;
-    }
+        img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 16px;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
-      margin-bottom: 20px;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
+        .hint {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
 
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15);
-    }
+        .hint span {
+            font-size: 15px;
+        }
 
-    .card img {
-      width: 100%;
-      display: block;
-      border-radius: 18px;
-    }
+        .thanks {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
 
-    .card-helper {
-      margin-top: 8px;
-      font-size: 14px;
-      color: var(--text-sub);
-      text-align: center;
-    }
+        /* 左對齊用的 class（字體大小不動，只改對齊＋ padding） */
+        .left-text {
+            text-align: left;
+            padding: 0 32px;
+            line-height: 1.8;
+        }
 
-    .thankyou {
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-      margin: 8px 0 10px;
-    }
+        .howto-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
 
-    .lead {
-      font-size: 16px;
-      line-height: 1.8;
-      margin: 0 0 24px;
-      text-align: left;
-    }
+        ol {
+            padding-left: 22px;
+            margin-top: 6px;
+            margin-bottom: 32px;
+        }
 
-    .section-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin: 0 0 12px;
-      text-align: left;
-    }
+        li {
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
 
-    .section-title span {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-sub);
-      margin-left: 4px;
-    }
-
-    ol {
-      margin: 0;
-      padding-left: 1.4em;
-    }
-
-    ol li {
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 8px;
-      text-align: left;
-    }
-
-    .footer-note {
-      margin-top: 20px;
-      font-size: 13px;
-      text-align: center;
-      color: var(--text-sub);
-    }
-
-    @media (max-width: 360px) {
-      h1 {
-        font-size: 24px;
-      }
-      .thankyou {
-        font-size: 18px;
-      }
-      .lead,
-      ol li {
-        font-size: 15px;
-      }
-    }
-  </style>
+        /* 小螢幕微調 */
+        @media (max-width: 390px) {
+            .left-text {
+                padding: 0 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- 背景生命樹（lifetree.png 要放在與 index.html 同一層） -->
-  <div class="background">
-    <img src="lifetree.png" alt="Tree of Life background" />
-  </div>
+    <div class="container">
+        <h1>Miru's Healing Card</h1>
 
-  <main class="main">
-    <h1>Miru's Healing Card</h1>
+        <div class="card-wrapper">
+            <p class="card-title">Miru Card</p>
+            <img id="cardImage" src="" alt="Miru Card" />
+            <p class="hint">
+                點擊卡片或重新整理頁面，<span>讓 Miru 幫你抽一張今日卡 ✨</span>
+            </p>
+        </div>
 
-    <!-- 抽卡區塊 -->
-    <section id="card-box" class="card">
-      <img id="miru-card" src="" alt="Miru Card" />
-      <div class="card-helper">點擊卡片，讓 Miru 幫你再抽一張 🌟</div>
-    </section>
+        <p class="thanks">Thank you for visiting 🌿</p>
 
-    <!-- 感謝 & 祝福文字 -->
-    <p class="thankyou">Thank you for visiting 🍃</p>
+        <!-- 這一句：左對齊 -->
+        <p class="left-text">
+            如果你願意，毛孩一定可以給你光與愛，讓這份療癒帶給你無條件的愛。
+        </p>
 
-    <p class="lead">
-      如果你願意，毛孩一定可以給你光與愛，<br />
-      讓這份療癒帶給你無條件的愛。
-    </p>
+        <!-- 抽牌教學：左對齊 -->
+        <div class="left-text">
+            <h3 class="howto-title">抽牌小提醒 ｜ How to use</h3>
+            <ol>
+                <li>先深呼吸幾次，讓自己回到此刻。</li>
+                <li>在心裡輕輕問：「今天，我需要看見什麼訊息？」</li>
+                <li>點擊卡片，或重新整理頁面，讓 Miru 幫你抽出一張今日卡。</li>
+                <li>看著畫面與文字，感受哪一句話落在你心裡，那就是現在的回應。</li>
+            </ol>
+        </div>
+    </div>
 
-    <!-- 使用說明 -->
-    <h2 class="section-title">
-      抽牌小提醒
-      <span>| How to use</span>
-    </h2>
+    <script>
+        // 卡片圖片清單（檔名照你上傳的）
+        const images = [
+            "12EAFDA1-8BAF-414E-9818-E5CF2A0D199F.PNG",
+            "16EFF9D4-D0E0-485E-B4BC-31BACFF72871.PNG",
+            "2A6AF70C-31DC-41A9-B5A2-809F1DCD6B33.PNG",
+            "4F506F6C-6E4E-4E4F-B3B4-A54AB3ACD6F1.PNG",
+            "B40CCF15-DE15-4067-8900-063751606C8C.PNG",
+            "EF188474-364C-4F38-BF1F-CC407639DAC5.PNG",
+            "FB4C9079-B27B-4A1C-9CAD-C7A707D812BB.PNG"
+        ];
 
-    <ol>
-      <li>先深呼吸幾次，讓自己回到此刻。</li>
-      <li>在心裡輕輕問：「今天，我需要看見什麼訊息？」</li>
-      <li>點擊卡片，或重新整理頁面，讓 Miru 幫你抽出一張今日卡。</li>
-      <li>
-        看著畫面與文字，感受哪一句話落在你心裡，那就是此刻要回應你的訊息。
-      </li>
-    </ol>
+        const cardImage = document.getElementById("cardImage");
 
-    <p class="footer-note">
-      這個小小頁面，也在祝福你和毛孩，每一天都被溫柔看見。
-    </p>
-  </main>
+        function setRandomImage() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            cardImage.src = images[randomIndex];
+        }
 
-  <script>
-    // 抽卡圖片清單（檔名要與 GitHub 上完全一致）
-    const miruImages = [
-      "12EAFDA1-8BAF-414E-9818-E5CF2A0D199F.PNG",
-      "16EFF9D4-D0E0-485E-B4BC-31BACFF72871.PNG",
-      "2A6AF70C-31DC-41A9-B5A2-809F1DCD6B33.PNG",
-      "4F506F6C-6E4E-4E4F-B3B4-A54AB3ACD6F1.PNG",
-      "B40CCF15-DE15-4067-8900-063751606C8C.PNG",
-      "EF188474-364C-4F38-BF1F-CC407639DAC5.PNG",
-      "FB4C9079-B27B-4A1C-9CAD-C7A707D812BB.PNG"
-    ];
+        // 一進頁面就抽一張
+        window.addEventListener("load", setRandomImage);
 
-    function drawRandomCard() {
-      const imgEl = document.getElementById("miru-card");
-      if (!imgEl) return;
-
-      const randomIndex = Math.floor(Math.random() * miruImages.length);
-      const filename = miruImages[randomIndex];
-
-      imgEl.src = filename;
-      imgEl.alt = "Miru Flow Card " + (randomIndex + 1);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // 初次載入抽一張
-      drawRandomCard();
-
-      // 點卡片再抽一張
-      const cardBox = document.getElementById("card-box");
-      cardBox.addEventListener("click", () => {
-        drawRandomCard();
-        // 小小移動視窗回卡片頂部
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    });
-  </script>
+        // 點卡片再抽一張
+        cardImage.addEventListener("click", setRandomImage);
+    </script>
 </body>
 </html>
