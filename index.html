@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Miru Card</title>
+    <title>Miru's Healing Card</title>
+
     <style>
         body {
             margin: 0;
@@ -12,25 +13,52 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             text-align: center;
         }
+
         .container {
             margin-top: 40px;
         }
+
         img {
-            width: 280px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 320px;
+            border-radius: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
+
         p {
             font-size: 18px;
             margin-top: 18px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Miru's Healing Card</h2>
-        <img src="12EAFDA1-8BAF-414E-9818-E5CF2A0D199F.PNG" alt="Miru Card" />
+
+        <!-- 這裡自動插入隨機圖片 -->
+        <img id="miruCard" src="" alt="Miru Card" />
+
         <p>Thank you for visiting 🌿</p>
     </div>
+
+    <script>
+        // 所有卡片圖片的檔名（放在 GitHub 同一資料夾）
+        const cards = [
+            "12EAFDA1-8BAF-414E-9818-E5CF2A0D199F.PNG",
+            "16EFF9D4-0DE0-485E-B4BC-31BA6FF728B3.PNG",
+            "2A6AF70C-31DC-41A9-B5A2-809F1DCD6B3.PNG",
+            "4F506F6C-6E4E-4E4F-B3B4-A54AB3ACD6F1.PNG",
+            "B40CCF15-DE15-4067-8900-0637516060CE.PNG",
+            "EF188474-364C-4F38-BF1F-CC407639DAC5.PNG",
+            "FB4C9079-B27B-4A1C-9CAD-C7A707D81202.PNG"
+        ];
+
+        // 隨機挑選一張
+        const randomCard = cards[Math.floor(Math.random() * cards.length)];
+
+        // 把圖片放進 HTML
+        document.getElementById("miruCard").src = randomCard;
+    </script>
+
 </body>
 </html>
