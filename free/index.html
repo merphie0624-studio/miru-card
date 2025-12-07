@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
@@ -9,37 +9,29 @@
         body {
             margin: 0;
             padding: 0;
-            background: #f7f7f7;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f7f7f7;
             text-align: center;
         }
 
-        .container {
-            margin-top: 20px;
+        .header-title {
+            text-align: center;
+            padding-top: 26px;
+            font-size: 20px;
+            font-weight: 700;
         }
 
-        /* ⭐ 金色生命樹頂圖區域 */
         .gold-top {
             width: 86%;
             max-width: 380px;
             height: 80px;
             margin: 0 auto;
             border-radius: 20px 20px 0 0;
-            background: url("./../images/gold-header.png") no-repeat center;
-            background-size: contain; /* ⭐ 重要：讓圖片顯示的關鍵 */
+            background-image: url("../images/gold-header.png");
+            background-size: cover;
+            background-position: center;
         }
 
-        /* 頁面標題 */
-        .header-title {
-            text-align: center;
-            padding-top: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            color: white;
-            text-shadow: 0 0 6px rgba(0,0,0,0.4);
-        }
-
-        /* 卡片顯示框 */
         .full-card-box {
             width: 86%;
             max-width: 380px;
@@ -47,39 +39,33 @@
             margin: 0 auto;
             background: white;
             border-radius: 0 0 20px 20px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
 
         .card-img {
             width: 100%;
-            max-width: 360px;
-            border-radius: 12px;
+            height: 100%;
+            object-fit: contain;
         }
 
-        /* 按鈕樣式 */
         .button {
-            margin-top: 24px;
+            margin-top: 30px;
             background: black;
             color: white;
-            padding: 14px 24px;
+            padding: 14px 32px;
             border-radius: 50px;
             font-size: 18px;
             font-weight: 600;
             border: none;
         }
 
-        /* Footer 區 */
         .footer {
-            margin-top: 40px;
-            text-align: left;
             width: 86%;
             max-width: 420px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 16px;
+            margin: 40px auto;
+            text-align: left;
             line-height: 1.7;
         }
 
@@ -88,53 +74,37 @@
             font-weight: 700;
             margin-bottom: 12px;
         }
-
-        .footer ul {
-            padding-left: 20px;
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- ⭐ 金色生命樹 + 標題 -->
-    <div class="gold-top">
-        <div class="header-title">Miru's Healing Card｜Free 系列</div>
-    </div>
+    <!-- 標題 -->
+    <div class="header-title">Miru's Healing Card｜Free 系列</div>
 
-    <!-- 卡片顯示框 -->
+    <!-- 金色生命樹 -->
+    <div class="gold-top"></div>
+
+    <!-- 卡片顯示區 -->
     <div class="full-card-box">
-        <img id="cardImage" class="card-img" src="./../images/free/free1.png" alt="">
+        <img id="cardImage" class="card-img" src="../images/free/free1.png" alt="">
     </div>
 
     <!-- 按鈕 -->
     <button class="button" onclick="drawFreeCard()">抽一張 Free 卡</button>
 
-    <!-- Footer：使用提醒 -->
+    <!-- 抽牌說明 -->
     <div class="footer">
-        <div class="footer-title">抽牌小提醒 | How to use</div>
+        <div class="footer-title">抽牌小提醒｜How to use</div>
 
         <ul>
             <li>先深呼吸幾次，讓自己回到此刻。</li>
             <li>在心裡輕問：「今天，我自己需要被釋放什麼？」</li>
             <li>點擊卡片，或重新整理頁面，讓 Miru 幫你抽出一張 Free 卡。</li>
-            <li>看看畫面與文字，感受哪一句話落在你心裡，那就是當下的回應。</li>
+            <li>看著畫面與文字，感受哪一句落在你心裡，那就是現在的訊息。</li>
         </ul>
-
-        <p style="margin-top: 16px; font-weight: 600; text-align:center;">
-            ✦ Miru 祝福你 自由自在做自己 ✦
-        </p>
     </div>
 
-    <!-- ⭐ 卡片抽取程式 -->
-    <script>
-        function drawFreeCard() {
-            const totalCards = 13; // Free 系列共有 13 張卡
-            const randomIndex = Math.floor(Math.random() * totalCards) + 1;
-            const cardImage = document.getElementById("cardImage");
-            cardImage.src = `./../images/free/free${randomIndex}.png`;
-        }
-    </script>
-
+    <script src="./script.js"></script>
 </body>
 </html>
