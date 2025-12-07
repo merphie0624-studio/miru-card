@@ -1,35 +1,26 @@
-// Free 13 張卡的圖片路徑
-const freeCards = [
-"../images/free/free1.png",
-"../images/free/free2.png",
-"../images/free/free3.png",
-"../images/free/free4.png",
-"../images/free/free5.png",
-"../images/free/free6.png",
-"../images/free/free7.png",
-"../images/free/free8.png",
-"../images/free/free9.png",
-"../images/free/free10.png",
-"../images/free/free11.png",
-"../images/free/free12.png",
-"../images/free/free13.png"
-];
-
-// 點卡片後抽一張 Free 卡
-function drawFreeCard() {
-const coverView = document.getElementById("coverView");
-const cardImage = document.getElementById("cardImage");
-const howTo = document.getElementById("howTo");
-
-// 隨機抽一張
-const index = Math.floor(Math.random() * freeCards.length);
-const src = freeCards[index];
-
-// 顯示卡片、隱藏封面
-cardImage.src = src;
-cardImage.classList.remove("hidden");
-coverView.classList.add("hidden");
-
-// 顯示「抽牌小提醒」
-howTo.classList.remove("hidden");
+/ Free 系列卡片路徑（13 張）
+const freeCards = [];
+for (let i = 1; i <= 13; i++) {
+freeCards.push(`../images/free/free${i}.png`);
 }
+
+// 金色背面（進頁面時顯示）
+const GOLD_BACK = "../images/gold-header.png";
+
+// 取得圖片元素
+const cardImage = document.getElementById("cardImage");
+
+// 點卡片時，隨機抽一張 Free 卡
+function drawFreeCard() {
+const randomIndex = Math.floor(Math.random() * freeCards.length);
+const randomSrc = freeCards[randomIndex];
+cardImage.src = randomSrc;
+}
+
+// 一進頁面先顯示金色背面（保險用，雖然 HTML 已經先設好了）
+window.addEventListener("DOMContentLoaded", () => {
+cardImage.src = GOLD_BACK;
+});
+
+// 監聽點擊事件：點卡片就抽牌
+cardImage.addEventListener("click", drawFreeCard);
