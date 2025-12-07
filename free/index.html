@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Miru's Healing Card | Free 系列</title>
+<title>Miru's Healing Card｜Free 系列</title>
 
 <style>
 body {
@@ -14,138 +14,113 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 text-align: center;
 }
 
-.page {
+.wrapper {
 max-width: 480px;
-margin: 24px auto 40px;
-padding: 0 16px 40px;
+margin: 0 auto;
+padding: 32px 16px 40px;
 }
 
 .page-title {
-font-size: 24px;
+margin: 0 0 24px;
+font-size: 26px;
 font-weight: 800;
-margin-bottom: 20px;
 text-align: left;
 }
 
-/* 整張卡片外框 */
-.card-wrapper {
+.card-container {
 width: 100%;
 max-width: 420px;
 margin: 0 auto 32px;
 background: white;
-border-radius: 24px;
-box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-overflow: hidden;
-cursor: pointer;
+border-radius: 26px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+padding: 16px 16px 24px;
+box-sizing: border-box;
 }
 
-/* 進場時看到的封面畫面（生命樹＋文字） */
-.cover {
-padding-bottom: 28px;
-}
-
-.gold-top {
-width: 100%;
-height: 120px;
-background: url("../images/gold-header.png");
-background-size: cover;
-background-position: center;
-}
-
-.cover-text {
-padding: 32px 18px 0;
-color: #666;
-font-size: 15px;
-line-height: 1.7;
-}
-
-.cover-text p {
-margin: 0 0 8px;
-}
-
-/* 抽出來的卡片圖片 */
 .card-img {
 width: 100%;
+border-radius: 20px;
 display: block;
 }
 
-.hidden {
-display: none;
-}
-
-/* 抽牌小提醒區塊 */
-.howto {
+.footer {
 width: 100%;
-max-width: 420px;
+max-width: 480px;
 margin: 0 auto;
 text-align: left;
 }
 
-.howto-title {
+.footer-title-main {
 font-size: 22px;
 font-weight: 800;
-margin-bottom: 12px;
+margin: 0 0 8px;
 }
 
-.howto-title span {
-font-size: 18px;
+.footer p {
+margin: 0 0 16px;
+line-height: 1.7;
+font-size: 15px;
+}
+
+.footer-title {
+font-size: 20px;
 font-weight: 700;
+margin: 24px 0 10px;
 }
 
-.howto ul {
-padding-left: 22px;
-margin: 0;
-line-height: 1.8;
+.footer ul {
+padding-left: 20px;
+margin: 0 0 18px;
+line-height: 1.7;
+font-size: 15px;
 }
 
-.howto li {
-margin-bottom: 6px;
-}
-
-.footer-sign {
-margin-top: 22px;
-font-weight: 700;
+.blessing {
+margin-top: 12px;
+font-weight: 600;
+text-align: center;
 }
 </style>
 </head>
 
 <body>
-<div class="page">
-<!-- 上方標題 -->
-<h1 class="page-title">Miru's Healing Card | Free 系列</h1>
+<div class="wrapper">
+<!-- 頁面標題 -->
+<h1 class="page-title">Miru's Healing Card｜Free 系列</h1>
 
-<!-- 抽卡區：一開始顯示封面，點下去後顯示隨機 Free 卡 -->
-<div id="cardArea" class="card-wrapper" onclick="drawFreeCard()">
-<!-- 封面（進站第一次看到的畫面） -->
-<div id="coverView" class="cover">
-<div class="gold-top"></div>
-<div class="cover-text">
-<p>輕輕在心裡問一句：</p>
-<p>「現在，我想釋放自己的哪一份？」</p>
-<p>準備好了，就點這張卡，</p>
-<p>讓 Miru 幫你抽一張 Free 卡。</p>
-</div>
+<!-- 抽出的卡片／金色背面 顯示區 -->
+<div class="card-container">
+<!-- 一開始顯示金色生命樹卡 -->
+<img
+id="cardImage"
+class="card-img"
+src="../images/gold-header.png"
+alt="Miru's Healing Free Card"
+/>
 </div>
 
-<!-- 抽出來的 Free 卡圖片（第一次是隱藏） -->
-<img id="cardImage" class="card-img hidden" src="" alt="Free Card" />
-</div>
+<!-- 說明區（跟 Flow 一樣的結構，只是最後祝福句改成 Free 版本） -->
+<div class="footer">
+<div class="footer-title-main">Thank you for visiting 🌿</div>
+<p>
+如果你願意，毛孩一定可以給你光與愛，讓這份療癒帶給你無條件的愛。
+</p>
 
-<!-- 抽牌小提醒：第一次進來隱藏，抽卡後才出現 -->
-<div id="howTo" class="howto hidden">
-<div class="howto-title">抽牌小提醒 <span>| How to use</span></div>
+<div class="footer-title">抽牌小提醒｜How to use</div>
 <ul>
 <li>先深呼吸幾次，讓自己回到此刻。</li>
 <li>在心裡輕聲問：「今天，我自己需要被釋放什麼？」</li>
 <li>點擊上面的卡片區域，讓 Miru 幫你抽出一張 Free 卡。</li>
-<li>看著畫面與文字，感受哪一句話落在你心裡，那就是當下的回應。</li>
+<li>
+看著畫面與文字，感受哪一句話落在你心裡，那就是當下的回應。
+</li>
 </ul>
+
+<p class="blessing">✨ Miru 祝福你 自由自在做自己 ✨</p>
+</div>
 </div>
 
-<p class="footer-sign">✨ Miru 祝福你 自由自在做自己 ✨</p>
-</div>
-
-<!-- 抽卡程式 -->
 <script src="script.js"></script>
 </body>
 </html>
