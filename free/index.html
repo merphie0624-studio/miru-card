@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miru's Healing Card｜Free 系列</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f7f7;
+      text-align: center;
+    }
+    .container {
+      max-width: 420px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 4px 0;
+    }
+    #cardImage {
+      width: 280px;
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      margin: 24px 0 12px;
+      cursor: pointer;
+    }
+    #cardTitle {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    #drawButton {
+      border: none;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      background: #222;
+      color: #fff;
+      margin-top: 8px;
+    }
+    #drawButton:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Miru's Healing Card｜Free 系列</h1>
+    <p>先深呼吸幾次，在心裡問一句：</p>
+    <p><strong>「現在，我想釋放自己的哪一份？」</strong></p>
+    <p>準備好了，就按下抽卡，讓 Miru 幫你選一張 Free 卡。</p>
+
+    <img
+      id="cardImage"
+      src="../images/free/free01.png"
+      alt="Free Card"
+    />
+
+    <p id="cardTitle">Free 卡抽卡區</p>
+    <button id="drawButton">抽一張 Free 卡</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
